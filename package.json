@@ -1,0 +1,16 @@
+{
+  "name": "eventplannerrest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TP",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "express": "^4.16.4",
+    "sqlite": "^3.0.0"
+  }
+}
