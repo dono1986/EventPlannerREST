@@ -41,7 +41,7 @@ let init = async function (cleanDB) {
             });
         });
 
-    console.log("Creating table");
+    //console.log("Creating table");
     try {
         await createEventTablePromise;
     } catch(err) {
@@ -64,15 +64,15 @@ let init = async function (cleanDB) {
         });
     });
 
-    console.log("Creating index");
+    //console.log("Creating index");
     try {
         await Promise.all([createTitleIndexPromise, createExpiresIndexPromise]);
     } catch(err) {
         console.log(`Error creating index because: ${err}`);
     }
 
-    console.log("Inserting test data");
-    db.run("INSERT INTO Event (title, desc, expires) VALUES ('Test','PARTY!', '2014-12-31');");
+    //console.log("Inserting test data");
+    //db.run("INSERT INTO Event (title, desc, expires) VALUES ('Test','PARTY!', '2014-12-31');");
 };
 
 module.exports = {
