@@ -30,12 +30,12 @@ class EventDao {
      * @return all entities
      */
     findAll(mindate) {
-        let sqlRequest = "SELECT * FROM Event WHERE expires >= $mindate ORDER BY expires ASC";
+        let sqlRequest = "SELECT id, title, expires FROM Event WHERE expires >= $mindate ORDER BY expires ASC";
         let sqlParams = { $mindate: mindate };
         return this.common.findAll(sqlRequest,sqlParams).then(rows => {
             let Events = [];
             for (const row of rows) {
-                Events.push(new EventEntity(row.id, row.title, row.desc, row.expires));
+                Events.push(new EventEntity(row.id, row.title, undefined, row.expires));
             }
             return Events;
         });
