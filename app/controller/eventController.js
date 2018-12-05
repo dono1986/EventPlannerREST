@@ -10,6 +10,8 @@ const EventEntity = require('../model/EventEntity');
 /* Load moment.js for date validation */
 const Moment = require("moment")
 
+
+
 /**
  * Event Controller
  */
@@ -40,7 +42,7 @@ class EventController {
     ensureCorrectDateFormat(date, res) {
         if(!this.isDateFormatCorrect(date)) {
             res.status(400); // bad request
-            res.json({errorCode: '-1', message: 'Bad date format. Must be YYYY-MM-DD'});
+            res.json({"errorCode": 11, "message": "Bad date format. Must be YYYY-MM-DD"});
             return false;
         }
         return true;
@@ -58,7 +60,14 @@ class EventController {
         let year = date.getUTCFullYear();
         let timestamp = year + '-' + month + '-' + (day<10 ? '0' + day : day);
 
-        const mindate = req.query.mindate && this.isDateFormatCorrect(req.query.mindate) ? req.query.mindate : timestamp;
+        let mindate = timestamp;
+
+        if(req.query.mindate) {
+            if(!this.ensureCorrectDateFormat(req.query.mindate, res)) return;
+            mindate = req.query.mindate;
+        }
+
+        //const mindate = req.query.mindate && this.isDateFormatCorrect(req.query.mindate) ? req.query.mindate : timestamp;
 
         this.EventDao.findAll(mindate)
             .then(this.common.findSuccess(res))
@@ -77,7 +86,14 @@ class EventController {
         let year = date.getUTCFullYear();
         let timestamp = year + '-' + month + '-' + (day<10 ? '0' + day : day);
 
-        const mindate = req.query.mindate && this.isDateFormatCorrect(req.query.mindate) ? req.query.mindate : timestamp;
+        let mindate = timestamp;
+
+        if(req.query.mindate) {
+            if(!this.ensureCorrectDateFormat(req.query.mindate, res)) return;
+            mindate = req.query.mindate;
+        }
+
+        //const mindate = req.query.mindate && this.isDateFormatCorrect(req.query.mindate) ? req.query.mindate : timestamp;
 
         this.EventDao.countAll(mindate)
             .then(this.common.findSuccess(res))
@@ -94,12 +110,6 @@ class EventController {
         eventEntity.id = req.params.id;
         eventEntity.title = req.body.title;
         eventEntity.description = req.body.description;
-
-        /*if(!this.isDateFormatCorrect(req.body.expires)) {
-            res.status(400); // bad request
-            res.json({errorCode: '-1', message: 'Bad date format. Must be YYYY-MM-DD'});
-            return;
-        }*/
 
         if(!this.ensureCorrectDateFormat(req.body.expires, res)) return;
 
@@ -125,11 +135,6 @@ class EventController {
         
         if(!this.ensureCorrectDateFormat(req.body.expires, res)) return;
 
-        /*if(!this.isDateFormatCorrect(req.body.expires)) {
-            res.status(400); // bad request
-            res.json({errorCode: '-1', message: 'Bad date format. Should be YYYY-MM-DD'});
-            return;
-        }*/
         eventEntity.expires = req.body.expires;
 
         if (req.body.id) {
