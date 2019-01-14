@@ -1,11 +1,11 @@
 /* Load Event Data Access Object */
-const EventDao = require('../dao/EventDao');
+const EventDao = require('../dao/eventDao');
 
 /* Load Controller Common function */
 const ControllerCommon = require('./common/controllerCommon');
 
 /* Load Event entity */
-const EventEntity = require('../model/EventEntity');
+const EventEntity = require('../model/evententity');
 
 /* Load moment.js for date validation */
 const Moment = require("moment")
