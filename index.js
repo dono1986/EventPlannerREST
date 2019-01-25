@@ -1,5 +1,6 @@
 /* Load modules */
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const bodyParser = require("body-parser");
 
@@ -9,6 +10,8 @@ const bodyParser = require("body-parser");
 const database = require('./app/config/dbconfig');
 
 startApp = async () => {
+
+    app.use(cors());
 
     /* Load command line parameters */
     var argv = require('minimist')(process.argv.slice(2));
