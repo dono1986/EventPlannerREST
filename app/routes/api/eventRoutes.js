@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 /* Load controller */
-const EventController = require('../../controller/EventController');
+const EventController = require('../../controller/eventController');
 const eventController = new EventController();
 
 /**
