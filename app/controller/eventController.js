@@ -58,7 +58,7 @@ class EventController {
         let day = date.getUTCDate();
         let month = date.getUTCMonth();
         let year = date.getUTCFullYear();
-        let timestamp = year + '-' + month + '-' + (day<10 ? '0' + day : day);
+        let timestamp = year + '-' + (month<10 ? '0' + month : month) + '-' + (day<10 ? '0' + day : day);
 
         let mindate = timestamp;
 
@@ -69,7 +69,7 @@ class EventController {
 
         //const mindate = req.query.mindate && this.isDateFormatCorrect(req.query.mindate) ? req.query.mindate : timestamp;
 
-        this.EventDao.findAll(mindate)
+		this.EventDao.findAll(mindate)
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     };
@@ -84,7 +84,7 @@ class EventController {
         let day = date.getUTCDate();
         let month = date.getUTCMonth();
         let year = date.getUTCFullYear();
-        let timestamp = year + '-' + month + '-' + (day<10 ? '0' + day : day);
+        let timestamp = year + '-' + (month<10 ? '0' + month : month) + '-' + (day<10 ? '0' + day : day);
 
         let mindate = timestamp;
 
