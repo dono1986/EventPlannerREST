@@ -56,7 +56,7 @@ class EventController {
 
         let date = new Date();
         let day = date.getUTCDate();
-        let month = date.getUTCMonth();
+        let month = date.getUTCMonth()+1;
         let year = date.getUTCFullYear();
         let timestamp = year + '-' + (month<10 ? '0' + month : month) + '-' + (day<10 ? '0' + day : day);
 
@@ -82,7 +82,7 @@ class EventController {
 
         let date = new Date();
         let day = date.getUTCDate();
-        let month = date.getUTCMonth();
+        let month = date.getUTCMonth()+1;
         let year = date.getUTCFullYear();
         let timestamp = year + '-' + (month<10 ? '0' + month : month) + '-' + (day<10 ? '0' + day : day);
 
